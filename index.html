@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Roha & Hasnan · Shaleema Barat & Walima</title>
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =================================
+       1. GLOBAL RESET & VARIABLES
+    ================================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --maroon-deep: #240a17;
+      --maroon: #4b172d;
+      --maroon-soft: #71334b;
+      --rose: #8e3d55;
+      --rose-light: #b56b82;
+      --gold: #d8b66a;
+      --gold-dark: #b8923f;
+      --gold-light: #f0d9a0;
+      --cream: #fff8ed;
+      --ink: #240a17;
+    }
+
+    html {
+      height: 100%;
+      background: #1a0710;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: radial-gradient(circle at 20% 10%, #2e0f20, #12030c 90%);
+      font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      padding: clamp(8px, 2.5vw, 18px);
+      padding-top: clamp(8px, 2.5vw, 18px);
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* =================================
+       2. COUNTDOWN TIMER (TOP)
+       Responsive for all devices
+    ================================= */
+    .countdown {
+      width: 100%;
+      max-width: 460px;
+      margin: 0 auto clamp(10px, 2.5vh, 18px);
+      padding: clamp(8px, 2.2vw, 14px) clamp(8px, 2.5vw, 16px);
+      text-align: center;
+      background: rgba(75, 23, 45, 0.95);
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      position: relative;
+      z-index: 100;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+      animation: countdownGlow 3s ease-in-out infinite;
+    }
+
+    .countdown-heading {
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(11px, 3vw, 16px);
+      letter-spacing: 1.5px;
+      margin: 0 0 clamp(6px, 1.5vw, 10px);
+      text-transform: uppercase;
+    }
+
+    .countdown-timer {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(3px, 2vw, 12px);
+      width: 100%;
+    }
+
+    .time-box {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .time-box span {
+      color: var(--gold);
+      font-size: clamp(16px, 5.5vw, 26px);
+      font-weight: 700;
+      line-height: 1.2;
+      display: inline-block;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .time-box small {
+      color: var(--cream);
+      font-size: clamp(8px, 2.2vw, 11px);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      margin-top: 2px;
+      opacity: 0.9;
+    }
+
+    @keyframes countdownGlow {
+      0%, 100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+      50%      { box-shadow: 0 4px 22px rgba(216, 182, 106, 0.45); }
+    }
+
+    /* =================================
+       3. APP CONTAINER
+    ================================= */
+    .invite-app {
+      width: min(100%, 460px);
+      margin: 0 auto;
+      position: relative;
+      perspective: 1400px;
+    }
+
+    /* =================================
+       4. PAGE 1 : COVER
+    ================================= */
+    .page-cover {
+      background: linear-gradient(145deg, #68243d, #3c1026 65%, #260b19);
+      color: var(--cream);
+      padding: clamp(30px, 8vw, 50px) clamp(16px, 5vw, 28px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      min-height: min(580px, calc(100svh - 130px));
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(216, 182, 106, 0.25);
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.45s ease;
+      transform-style: preserve-3d;
+      overflow: hidden;
+    }
+
+    .page-cover::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid var(--gold);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .page-cover::after {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px solid #d8b66a55;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .ornament {
+      color: var(--gold);
+      font-size: clamp(20px, 5vw, 26px);
+      letter-spacing: 12px;
+      margin-bottom: clamp(14px, 3vh, 22px);
+      opacity: 0.9;
+    }
+
+    .cover-eyebrow {
+      font-size: clamp(8px, 2.3vw, 10px);
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: clamp(8px, 1.5vh, 12px);
+      line-height: 1.6;
+    }
+
+    .cover-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(24px, 6.5vw, 32px);
+      color: #f1dcae;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .cover-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 11vw, 56px);
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: var(--cream);
+      line-height: 1.05;
+      margin: clamp(8px, 1.5vh, 12px) 0 clamp(6px, 1vh, 8px);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .cover-name span {
+      color: var(--gold);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .cover-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(15px, 4vw, 19px);
+      letter-spacing: 2px;
+      color: #e6cfa1;
+      margin-bottom: clamp(18px, 3vh, 26px);
+    }
+
+    .gold-line {
+      width: 130px;
+      max-width: 60%;
+      height: 1px;
+      background: var(--gold);
+      position: relative;
+      margin: clamp(6px, 1.2vh, 10px) 0 clamp(16px, 3vh, 26px);
+    }
+    .gold-line::after {
+      content: "✦";
+      position: absolute;
+      left: 50%;
+      top: -11px;
+      color: var(--gold);
+      transform: translateX(-50%);
+      font-size: 14px;
+      padding: 0 6px;
+    }
+
+    /* Beautiful button */
+    .open-btn {
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(11px, 3vw, 13px);
+      font-weight: 500;
+      letter-spacing: 3px;
+      padding: clamp(14px, 3.5vw, 18px) clamp(24px, 6vw, 34px);
+      min-width: min(220px, 80%);
+      min-height: 48px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+      text-transform: uppercase;
+      border-radius: 0;
+      z-index: 6;
+      margin-top: 6px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .open-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(216, 182, 106, 0.35), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .open-btn:hover,
+    .open-btn:focus-visible {
+      background: var(--gold);
+      color: var(--maroon-deep);
+      box-shadow: 0 8px 25px rgba(216, 182, 106, 0.45);
+      letter-spacing: 4px;
+      border-color: var(--gold-light);
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    .open-btn:hover::before {
+      left: 100%;
+    }
+
+    .open-btn:active {
+      transform: translateY(0);
+    }
+
+    .tap-hint {
+      font-size: clamp(8px, 2.2vw, 9px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e6cfa1b3;
+      margin-top: clamp(14px, 2.5vh, 24px);
+      opacity: 0.8;
+    }
+
+    /* =================================
+       5. PAGE 2 : DETAILS
+    ================================= */
+    .page-details {
+      display: none;
+      background: var(--cream);
+      box-shadow: 0 25px 45px -12px #000000cc;
+      overflow: hidden;
+      position: relative;
+      opacity: 0;
+      transform: translateY(24px) scale(0.97);
+      transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+      will-change: transform, opacity;
+      border: 1px solid rgba(184, 146, 63, 0.35);
+    }
+
+    .page-details.reveal {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .details-frame {
+      margin: clamp(12px, 3.5vw, 20px);
+      border: 1px solid var(--gold);
+      outline: 1px solid #d8b66a55;
+      outline-offset: 4px;
+      padding: clamp(24px, 6vw, 44px) clamp(14px, 4.5vw, 28px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: #fffdf8;
+      position: relative;
+    }
+
+    .details-eyebrow {
+      font-size: clamp(8px, 2.2vw, 9px);
+      letter-spacing: 3px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      margin-bottom: clamp(12px, 2.5vh, 18px);
+      line-height: 1.6;
+    }
+
+    .details-script {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(24px, 6.5vw, 34px);
+      color: var(--rose);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .details-couple {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 6vw, 32px);
+      font-weight: 600;
+      color: var(--maroon);
+      letter-spacing: 1px;
+      margin: 4px 0 2px;
+      line-height: 1.2;
+    }
+
+    .details-couple span {
+      color: var(--gold);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .details-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 9vw, 46px);
+      font-weight: 600;
+      color: var(--maroon);
+      letter-spacing: 1px;
+      margin: clamp(10px, 2vh, 14px) 0 clamp(6px, 1.5vh, 10px);
+      line-height: 1.1;
+    }
+
+    .details-name span {
+      color: var(--gold);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .details-divider {
+      width: 60%;
+      color: var(--gold-dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: clamp(12px, 2.5vh, 16px) 0 clamp(14px, 2.5vh, 20px);
+      font-size: 14px;
+    }
+    .details-divider::before,
+    .details-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--gold-dark);
+    }
+
+    .details-event {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 6.5vw, 32px);
+      font-weight: 600;
+      color: var(--maroon);
+      margin: 4px 0 2px;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .details-event-sub {
+      font-size: clamp(8px, 2.3vw, 10px);
+      letter-spacing: 3px;
+      color: var(--rose);
+      text-transform: uppercase;
+      margin-bottom: clamp(16px, 3vh, 22px);
+    }
+
+    .details-datebox {
+      border-top: 1px solid var(--gold-dark);
+      border-bottom: 1px solid var(--gold-dark);
+      padding: clamp(12px, 2.5vh, 18px) clamp(20px, 5vw, 28px);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      color: var(--maroon);
+      margin-bottom: clamp(16px, 3vh, 22px);
+    }
+
+    .details-datebox strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 11vw, 54px);
+      letter-spacing: 5px;
+      line-height: 1.1;
+      font-weight: 600;
+      color: var(--maroon);
+    }
+
+    .details-datebox span {
+      font-size: clamp(9px, 2.5vw, 10px);
+      letter-spacing: 4px;
+      color: var(--rose);
+      text-transform: uppercase;
+    }
+
+    .details-venue {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(16px, 4.5vw, 22px);
+      color: var(--maroon-soft);
+      margin: 10px 0 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      line-height: 1.4;
+    }
+
+    .details-venue a {
+      color: var(--rose);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--gold-dark);
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .details-venue a:hover {
+      color: var(--maroon);
+      border-bottom-color: var(--gold);
+    }
+
+    .details-time {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(216, 182, 106, 0.15);
+      border: 1px solid rgba(184, 146, 63, 0.6);
+      border-radius: 30px;
+      padding: clamp(6px, 1.5vh, 8px) clamp(14px, 4vw, 20px);
+      font-size: clamp(9px, 2.5vw, 11px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--maroon);
+      margin: clamp(12px, 2.5vh, 16px) 0 8px;
+      font-weight: 500;
+    }
+    .details-time::before {
+      content: "✦";
+      color: var(--gold-dark);
+      font-size: 12px;
+    }
+
+    .details-blessing {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(14px, 3.8vw, 18px);
+      color: var(--maroon-soft);
+      max-width: 280px;
+      margin: clamp(16px, 3vh, 22px) auto 6px;
+      line-height: 1.6;
+    }
+
+    .closing-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 5.5vw, 24px);
+      color: var(--maroon);
+      margin-top: clamp(14px, 2.5vh, 18px);
+      letter-spacing: 1px;
+    }
+    .closing-names span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .back-link {
+      margin-top: clamp(18px, 3vh, 26px);
+      font-size: clamp(9px, 2.4vw, 10px);
+      letter-spacing: 2px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.3s, border-color 0.3s;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      padding: 8px 0;
+      min-height: 44px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .back-link:hover {
+      color: var(--maroon);
+      border-bottom-color: var(--gold);
+    }
+
+    /* =================================
+       6. HELPERS & TRANSITIONS
+    ================================= */
+    .page-cover.hide {
+      transform: scale(0.92) rotateY(5deg);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
+    }
+
+    .details-frame .anim-item {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .page-details.reveal .anim-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .page-details.reveal .anim-item:nth-child(1)  { transition-delay: 0.08s; }
+    .page-details.reveal .anim-item:nth-child(2)  { transition-delay: 0.14s; }
+    .page-details.reveal .anim-item:nth-child(3)  { transition-delay: 0.20s; }
+    .page-details.reveal .anim-item:nth-child(4)  { transition-delay: 0.26s; }
+    .page-details.reveal .anim-item:nth-child(5)  { transition-delay: 0.32s; }
+    .page-details.reveal .anim-item:nth-child(6)  { transition-delay: 0.38s; }
+    .page-details.reveal .anim-item:nth-child(7)  { transition-delay: 0.44s; }
+    .page-details.reveal .anim-item:nth-child(8)  { transition-delay: 0.50s; }
+    .page-details.reveal .anim-item:nth-child(9)  { transition-delay: 0.56s; }
+    .page-details.reveal .anim-item:nth-child(10) { transition-delay: 0.62s; }
+    .page-details.reveal .anim-item:nth-child(11) { transition-delay: 0.68s; }
+    .page-details.reveal .anim-item:nth-child(12) { transition-delay: 0.74s; }
+    .page-details.reveal .anim-item:nth-child(13) { transition-delay: 0.80s; }
+    .page-details.reveal .anim-item:nth-child(14) { transition-delay: 0.86s; }
+
+    .corner-flower {
+      position: absolute;
+      color: var(--gold-dark);
+      font-size: clamp(18px, 5vw, 24px);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .corner-flower.tl { top: 10px; left: 14px; }
+    .corner-flower.tr { top: 10px; right: 14px; }
+    .corner-flower.bl { bottom: 10px; left: 14px; }
+    .corner-flower.br { bottom: 10px; right: 14px; }
+
+    /* =================================
+       7. RESPONSIVE TWEAKS
+    ================================= */
+    @media (max-width: 380px) {
+      .cover-name { font-size: 34px; }
+      .details-name { font-size: 30px; }
+      .details-datebox strong { font-size: 36px; }
+      .countdown { border-radius: 10px; }
+    }
+
+    @media (max-width: 320px) {
+      .cover-name { font-size: 30px; }
+      .details-name { font-size: 26px; }
+      .open-btn { letter-spacing: 2px; padding: 12px 20px; }
+      .details-datebox strong { font-size: 32px; }
+      .time-box span { font-size: 14px; }
+      .time-box small { font-size: 7px; }
+    }
+
+    @media (min-width: 600px) {
+      .invite-app { max-width: 540px; }
+      .countdown { max-width: 540px; }
+    }
+
+    /* landscape phones */
+    @media (max-height: 560px) and (orientation: landscape) {
+      body { padding: 6px; }
+      .countdown { margin-bottom: 8px; padding: 5px 10px; }
+      .countdown-heading { font-size: 10px; margin-bottom: 4px; }
+      .time-box span { font-size: 15px; }
+      .time-box small { font-size: 7px; }
+      .page-cover { min-height: calc(100svh - 90px); padding: 20px 14px; }
+      .ornament { margin-bottom: 6px; font-size: 18px; }
+      .cover-name { font-size: 32px; margin: 4px 0; }
+      .cover-script { font-size: 20px; }
+      .gold-line { margin: 4px 0 10px; }
+      .open-btn { padding: 10px 18px; margin-top: 4px; }
+      .tap-hint { margin-top: 8px; }
+      .details-frame { padding: 16px 12px; }
+    }
+
+    /* =================================
+       8. ACCESSIBILITY
+    ================================= */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .page-cover,
+      .page-details,
+      .details-frame .anim-item {
+        transition: none !important;
+      }
+      .details-frame .anim-item {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =================================
+       COUNTDOWN TIMER (TOP)
+  ================================= -->
+  <div class="countdown" aria-label="Wedding countdown">
+    <p class="countdown-heading" id="countdownHeading">The Wedding Begins In</p>
+    <div class="countdown-timer" id="countdownTimer">
+      <div class="time-box">
+        <span id="days">00</span>
+        <small>Days</small>
+      </div>
+      <div class="time-box">
+        <span id="hours">00</span>
+        <small>Hours</small>
+      </div>
+      <div class="time-box">
+        <span id="minutes">00</span>
+        <small>Minutes</small>
+      </div>
+      <div class="time-box">
+        <span id="seconds">00</span>
+        <small>Seconds</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================================
+       APP
+  ================================= -->
+  <div class="invite-app">
+
+    <!-- ========== PAGE 1 : COVER ========== -->
+    <div class="page-cover" id="coverPage">
+      <div class="cover-content">
+        <div class="ornament">✦ ❧ ✦</div>
+        <p class="cover-eyebrow">Together with their families</p>
+        <p class="cover-script">You are cordially invited</p>
+
+        <h1 class="cover-name">Roha <span>&</span> Hasnan</h1>
+        <p class="cover-sub">Shaleema · Barat &amp; Walima</p>
+
+        <div class="gold-line"></div>
+        <p class="cover-eyebrow" style="margin-top: 4px; letter-spacing: 2.5px;">31 · December · 2026</p>
+
+        <button class="open-btn" id="openInvitationBtn">Open Invitation</button>
+        <p class="tap-hint">a celebration of love</p>
+      </div>
+    </div>
+
+    <!-- ========== PAGE 2 : SHALEEMA DETAILS ========== -->
+    <div class="page-details" id="detailsPage">
+      <div class="details-frame">
+        <!-- corner ornaments -->
+        <span class="corner-flower tl">❧</span>
+        <span class="corner-flower tr">❧</span>
+        <span class="corner-flower bl">❧</span>
+        <span class="corner-flower br">❧</span>
+
+        <p class="details-eyebrow anim-item">With the blessings of the Almighty</p>
+        <p class="details-script anim-item">You are warmly invited</p>
+
+        <p class="details-couple anim-item">Roha <span>&</span> Hasnan</p>
+        <h2 class="details-name anim-item">Shaleema</h2>
+
+        <div class="details-divider anim-item">✦</div>
+
+        <p class="details-event anim-item">Barat &amp; Walima</p>
+        <p class="details-event-sub anim-item">A double celebration of love</p>
+
+        <div class="details-datebox anim-item">
+          <span>Thursday</span>
+          <strong>31</strong>
+          <span>December 2026</span>
+        </div>
+
+        <p class="details-time anim-item">7:00 PM – 10:00 PM</p>
+
+        <p class="details-venue anim-item">
+          <span>📍</span>
+          <a href="https://maps.app.goo.gl/MxozPhkDVumwC2hb8?g_st=aw" target="_blank" rel="noopener noreferrer">
+            Wasna Event Complex Islamabad
+          </a>
+        </p>
+
+        <p class="details-blessing anim-item">
+          Your presence and prayers will make our celebration even more special.
+        </p>
+
+        <p class="closing-names anim-item">Roha <span>&</span> Hasnan</p>
+
+        <button class="back-link anim-item" id="backToCoverBtn">← Back to invitation</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =================================
+       SCRIPT
+  ================================= -->
+  <script>
+    (function () {
+      "use strict";
+
+      // =====================================
+      // 1. COUNTDOWN TIMER
+      // =====================================
+      const weddingDate = new Date("December 31, 2026 19:00:00").getTime();
+
+      const daysEl = document.getElementById("days");
+      const hoursEl = document.getElementById("hours");
+      const minutesEl = document.getElementById("minutes");
+      const secondsEl = document.getElementById("seconds");
+      const countdownHeading = document.getElementById("countdownHeading");
+      const countdownTimer = document.getElementById("countdownTimer");
+
+      function pad(num) {
+        return String(num).padStart(2, "0");
+      }
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = weddingDate - now;
+
+        if (diff <= 0) {
+          countdownHeading.textContent = "The Wedding Celebration Has Begun!";
+          countdownTimer.style.display = "none";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        daysEl.textContent = pad(days);
+        hoursEl.textContent = pad(hours);
+        minutesEl.textContent = pad(minutes);
+        secondsEl.textContent = pad(seconds);
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // =====================================
+      // 2. PAGE NAVIGATION (COVER <-> DETAILS)
+      // =====================================
+      const coverPage = document.getElementById("coverPage");
+      const detailsPage = document.getElementById("detailsPage");
+      const openBtn = document.getElementById("openInvitationBtn");
+      const backBtn = document.getElementById("backToCoverBtn");
+
+      let isTransitioning = false;
+
+      function showDetails() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        coverPage.classList.add("hide");
+
+        setTimeout(function () {
+          coverPage.style.display = "none";
+          detailsPage.style.display = "block";
+
+          // force reflow so the transition triggers
+          void detailsPage.offsetWidth;
+
+          detailsPage.classList.add("reveal");
+
+          window.scrollTo({ top: 0, behavior: "smooth" });
+
+          setTimeout(function () {
+            coverPage.classList.remove("hide");
+            isTransitioning = false;
+          }, 600);
+        }, 380);
+      }
+
+      function goBack() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        detailsPage.classList.remove("reveal");
+
+        setTimeout(function () {
+          detailsPage.style.display = "none";
+
+          coverPage.style.display = "flex";
+          void coverPage.offsetWidth;
+
+          coverPage.classList.remove("hide");
+
+          window.scrollTo({ top: 0, behavior: "smooth" });
+
+          setTimeout(function () {
+            isTransitioning = false;
+          }, 400);
+        }, 400);
+      }
+
+      openBtn.addEventListener("click", showDetails);
+      backBtn.addEventListener("click", goBack);
+    })();
+  </script>
+
+</body>
+</html>
